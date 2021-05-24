@@ -1,0 +1,24 @@
+{
+   "employees" : [
+      {
+         "id" : "E0001",
+         "name" : "Aman",
+         "desig" : "Manager",
+         "dept"  :  "Sale",
+         "basic" :  23000
+      },
+
+      {
+         "id" : "E0002",
+         "name" : "Ravi",
+         "desig" : "AsstManager",
+         "dept"  :  "HR",
+         "basic" :  13000
+
+      }
+   ]
+
+
+
+
+}

@@ -1,0 +1,210 @@
+MIME type
+Multipurpose Internet Mail Extension
+=====> text/html
+       text/plain
+       application/json
+
+MIME represents in what form we are planning to exchange the data between
+the server and the client ( Browsers). 
+
+
+The online validator for YML files.
+
+http://www.yamllint.com/
+====================================================
+Design Principles
+Design Patterns
+
+------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+https://www.javatpoint.com/solid-principles-java
+
+SOLID Principles Java
+In Java, SOLID principles are an object-oriented approach that are applied to software structure design. It is conceptualized by Robert C. Martin (also known as Uncle Bob). These five principles have changed the world of object-oriented programming, and also changed the way of writing software. It also ensures that the software is modular, easy to understand, debug, and refactor. In this section, we will discuss SOLID principles in Java with proper example.
+
+
+The word SOLID acronym for:
+
+Single Responsibility Principle (SRP)
+Open-Closed Principle (OCP)
+Liskov Substitution Principle (LSP)
+Interface Segregation Principle (ISP)
+Dependency Inversion Principle (DIP)
+--------------------------------------------------------------------------------------------------------------
+Cohesion=======> We should write highly cohesive code.
+Cohesion means whatever task a method or a class is performing it should a single code not being merged 
+with other codes.   Example you have to check for validity of a password and you want to keep two validations
+1) The password should be of minimum 8 characters
+2) It should have one special character, one digit, on uppercase and one lowercase character.
+
+Coupling=======> We should write loosely coupled code.
+The code is said to be tightly coupled when we make a change one part of a code another part also needs to 
+be changed, that is known as tightly coupled code. 
+
+--------------------------------------------------------------------------------------------------
+We need to keep student information alongwith student's result and monthly fees payment
+Single Responsibility Principle
+The single responsibility principle states that every Java class must perform a single functionality. Implementation of multiple functionalities in a single class mashup the code and if any modification is required may affect the whole class. It precise the code and the code can be easily maintained. 
+
+
+------------------------------------------------------------------------------
+
+Open-Closed Principle
+The application or module entities the methods, functions, variables, etc. The open-closed principle states that according to new requirements the module should be open for extension but closed for modification. 
+
+class Student {
+
+            public void writingExam() {
+
+     }
+}
+
+We want to keep a provision of writing the exam but people can go for online exam too.
+
+We thought of making the change in above code by passing some variable.
+
+class Student {
+
+            public void writingExam(int type) {
+            if(type==1) 
+                {
+                   System.out.println("Pen and Paper");
+                }
+             if(type==2)
+                {
+                  System.out.println("Online Exam");
+                }
+
+     }
+}
+  So the above changes are not suggested we are changing the existing code.
+
+
+
+class Student {
+
+            public void writingExam(Exam exam) {
+
+     }
+}
+
+
+abstract class Exam{
+     public abstract void writingExam();
+  }
+
+ 
+class PenPaperExam extends Exam {
+     
+     public void writingExam(){
+      System.out.println("Writing with pen and paper");
+      }   
+   }
+
+class OnlineExam extends Exam {
+
+     public void writingExam() {
+      System.out.println("Writing online exam");
+      }
+ }
+
+
+   class Student   {
+
+      public void writeExam(Exam e){
+          e.writeExam(); 
+      }
+   }
+
+
+   public class Main  {
+
+     pulic static void main(String args[]) {
+              Student student=new Student();
+              Scan the type of exam from user 
+           1) for pen and paper
+           2) for online exam
+           3) viva
+            
+         if it is one 
+         PenPaperExam ppe=new PenPaperExam();
+         student.writeExam(ppe);
+------------------------------------------------------------------------------------------------------------
+Liskov Substitution Principle
+The Liskov Substitution Principle (LSP) was introduced by Barbara Liskov. It applies to inheritance in such a way that the derived classes must be completely substitutable for their base classes. In other words, if class A is a subtype of class B, then we should be able to replace B with A without interrupting the behavior of the program.
+
+class Base  {
+   public void display()
+    {
+       System.out.println("Display of the base");
+    } 
+}
+class Derived extends Base {
+   public void display()
+     {
+       System.out.println("Display of the derived class");
+      }   
+}
+
+
+   public class Main {
+     public static void main(String args[]) {
+
+      Base base=new Base();
+      base.display();
+      Derived derived=new Derived();
+      derived.display();
+      Base base1=new Derived();
+      base1.display();
+
+-------------------------------------------------------------------------------------------------------------
+
+Interface Segregation Principle
+The principle states that the larger interfaces split into smaller ones. Because the implementation classes use only the methods that are required. We should not force the client to use the methods that they do not want to use.
+
+The goal of the interface segregation principle is similar to the single responsibility principle. Let's understand the principle through an example.
+
+
+interface Calculator {
+            int add(int a,int b);
+            int subtract(int a,int b);
+            int divide(int a,int b);
+            int multiply(int a,int b);
+            }
+
+public class MyNumber extends Calculator{
+
+}
+
+In the above scenario we have to implement all the methods whether it is required or not.
+
+interface Calculator1 {
+            int add(int a,int b);
+    }
+
+interface Calculator2 {
+int subtract(int a,int b);
+}
+
+
+interface Calculator3 {
+int divide(int a,int b);
+}
+
+ interface Calculator4{
+int multiply(int a,int b);
+            }
+
+public class MyNumber implements Calculator1,Calculator2 {}
+If we want to work with add and subtract only and previously we were forced to override all the methods.
+------------------------------------------------------------------------------------------------------
+Dependency Inversion Principle
+The principle states that we must use abstraction (abstract classes and interfaces) instead of concrete implementations. High-level modules should not depend on the low-level module but both should depend on the abstraction. 
+
+
+   ArrayList<String> list=new ArrayList<>();    // This approach is not good and flexible
+   List<String> list=new ArrayList<>();    
+
+   java.sql.Driver driver=new com.mysql.cj.jdbc.Driver();
+-------------------------------------------------------------------------------------------------------------
+https://www.javatpoint.com/design-patterns-in-java
